@@ -1,8 +1,7 @@
 import { motion, AnimatePresence } from 'framer-motion';
 import styled from 'styled-components';
-import { X, Link2 } from 'lucide-react';
-import { FaFacebook, FaWhatsapp, FaLinkedin } from 'react-icons/fa';
-import { FaXTwitter } from 'react-icons/fa6';
+import { Link2, MoreHorizontal } from 'lucide-react';
+import { FaFacebook, FaWhatsapp, FaLinkedin, FaInstagram } from 'react-icons/fa';
 import { profile } from '../data/links';
 
 const Overlay = styled(motion.div)`
@@ -26,7 +25,7 @@ const Sheet = styled(motion.div)`
 const Header = styled.div`
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: center;
   margin-bottom: 20px;
 `;
 
@@ -34,17 +33,6 @@ const Title = styled.h2`
   font-size: 17px;
   font-weight: 700;
   color: #111;
-`;
-
-const CloseBtn = styled.button`
-  background: none;
-  border: none;
-  cursor: pointer;
-  color: #555;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 4px;
 `;
 
 const Card = styled.div`
@@ -88,11 +76,9 @@ const CardUrl = styled.p`
 
 const ShareRow = styled.div`
   display: flex;
-  gap: 20px;
-  overflow-x: auto;
-  padding-bottom: 4px;
-  scrollbar-width: none;
-  &::-webkit-scrollbar { display: none; }
+  gap: 0;
+  justify-content: space-between;
+  width: 100%;
 `;
 
 const ShareItem = styled.div`
@@ -122,6 +108,9 @@ const IconLabel = styled.span`
   text-align: center;
 `;
 
+const url = encodeURIComponent(window.location.href);
+const text = encodeURIComponent('Check out Market VRY: ' + window.location.href);
+
 const shareOptions = [
   {
     label: 'Copy Link',
@@ -129,34 +118,42 @@ const shareOptions = [
     color: '#333',
     icon: Link2,
     action: () => navigator.clipboard.writeText(window.location.href),
-  },
-  {
-    label: 'X',
-    bg: '#000',
-    color: '#fff',
-    icon: FaXTwitter,
-    action: () => window.open(`https://twitter.com/intent/tweet?url=${window.location.href}`),
-  },
-  {
-    label: 'Facebook',
-    bg: '#1877f2',
-    color: '#fff',
-    icon: FaFacebook,
-    action: () => window.open(`https://www.facebook.com/sharer/sharer.php?u=${window.location.href}`),
+    close: true,
   },
   {
     label: 'WhatsApp',
     bg: '#25d366',
     color: '#fff',
     icon: FaWhatsapp,
-    action: () => window.open(`https://wa.me/?text=${window.location.href}`),
+    action: () => window.open(`https://wa.me/?text=${text}`),
+  },
+  {
+    label: 'Facebook',
+    bg: '#1877f2',
+    color: '#fff',
+    icon: FaFacebook,
+    action: () => window.open(`https://www.facebook.com/sharer/sharer.php?u=${url}`),
+  },
+  {
+    label: 'Instagram',
+    bg: '#e1306c',
+    color: '#fff',
+    icon: FaInstagram,
+    action: () => window.open(`https://www.instagram.com/`),
   },
   {
     label: 'LinkedIn',
     bg: '#0a66c2',
     color: '#fff',
     icon: FaLinkedin,
-    action: () => window.open(`https://www.linkedin.com/sharing/share-offsite/?url=${window.location.href}`),
+    action: () => window.open(`https://www.linkedin.com/sharing/share-offsite/?url=${url}`),
+  },
+  {
+    label: 'Other',
+    bg: '#f0f0f0',
+    color: '#333',
+    icon: MoreHorizontal,
+    action: () => navigator.share?.({ title: 'Market VRY', url: window.location.href }),
   },
 ];
 
@@ -178,12 +175,11 @@ export default function ShareModal({ onClose }) {
         >
           <Header>
             <Title>Share Market VRY</Title>
-            <CloseBtn onClick={onClose}><X size={20} /></CloseBtn>
           </Header>
 
           <Card>
             <AvatarCircle>
-              <img src={profile.avatar} alt={profile.name} />
+              <img src={profile.avatar} alt={profile.username} />
             </AvatarCircle>
             <CardName>{profile.username}</CardName>
             <CardUrl>marketvry.com</CardUrl>
@@ -191,14 +187,14 @@ export default function ShareModal({ onClose }) {
 
           <ShareRow>
             {shareOptions.map((opt) => (
-              <ShareItem key={opt.label} onClick={() => { opt.action(); if (opt.label === 'Copy Link') onClose(); }}>
+              <ShareItem key={opt.label} onClick={() => { opt.action(); if (opt.close) onClose(); }}>
                 <IconCircle
                   $bg={opt.bg}
                   $color={opt.color}
                   whileHover={{ scale: 1.1 }}
                   whileTap={{ scale: 0.92 }}
                 >
-                  <opt.icon size={opt.label === 'Copy Link' ? 20 : 22} />
+                  <opt.icon size={22} />
                 </IconCircle>
                 <IconLabel>{opt.label}</IconLabel>
               </ShareItem>

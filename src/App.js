@@ -6,6 +6,7 @@ import { profile, links, socials } from './data/links';
 import LinkButton from './components/LinkButton';
 import SocialIcon from './components/SocialIcon';
 import ShareModal from './components/ShareModal';
+import LightRays from './components/LightRays';
 
 const GlobalStyle = createGlobalStyle`
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -23,13 +24,13 @@ const float = keyframes`
 
 /* Full page — deep teal base */
 const Page = styled.div`
-  min-height: 100vh;
+  height: 100vh;
   width: 100%;
-  background: #0b5e6e;
+  background: #ffffff;
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 0 0 60px;
+  padding: 0;
   position: relative;
   overflow: hidden;
 `;
@@ -37,25 +38,13 @@ const Page = styled.div`
 /* Top hero section — teal to slightly lighter teal */
 const Hero = styled.div`
   width: 100%;
-  background: linear-gradient(160deg, #0e7490 0%, #0b5e6e 100%);
+  background: transparent;
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 60px 24px 40px;
+  padding: 32px 24px 10px;
   position: relative;
-
-  /* orange accent arc at bottom */
-  &::after {
-    content: '';
-    position: absolute;
-    bottom: -30px;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 140%;
-    height: 60px;
-    background: #0b5e6e;
-    border-radius: 50% 50% 0 0 / 100% 100% 0 0;
-  }
+  z-index: 1;
 `;
 
 /* Decorative orange circle blobs */
@@ -75,9 +64,9 @@ const ShareBtn = styled(motion.button)`
   width: 46px;
   height: 46px;
   border-radius: 50%;
-  background: rgba(255,255,255,0.15);
-  border: 2px solid rgba(255,255,255,0.35);
-  color: #fff;
+  background: rgba(0,0,0,0.1);
+  border: 2px solid rgba(0,0,0,0.3);
+  color: #000;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -87,13 +76,13 @@ const ShareBtn = styled(motion.button)`
 `;
 
 const AvatarRing = styled(motion.div)`
-  width: 100px;
-  height: 100px;
+  width: 80px;
+  height: 80px;
   border-radius: 50%;
   padding: 3px;
   background: linear-gradient(135deg, #c2622d, #e8855a);
   box-shadow: 0 0 0 4px rgba(194,98,45,0.25), 0 8px 24px rgba(0,0,0,0.3);
-  margin-bottom: 18px;
+  margin-bottom: 10px;
   animation: ${float} 4s ease-in-out infinite;
 `;
 
@@ -113,20 +102,20 @@ const AvatarInner = styled.div`
 `;
 
 const Username = styled(motion.p)`
-  color: #ffffff;
-  font-size: 2rem;
+  color: #000000;
+  font-size: 1.6rem;
   font-weight: 800;
   text-align: center;
-  margin-top: 4px;
+  margin-top: 2px;
   letter-spacing: 0.5px;
 `;
 
 const Bio = styled(motion.p)`
-  color: rgba(255,255,255,0.9);
-  font-size: 18px;
+  color: rgba(0,0,0,0.8);
+  font-size: 14px;
   font-weight: 800;
   text-align: center;
-  margin-top: 6px;
+  margin-top: 4px;
   letter-spacing: 1px;
 `;
 
@@ -135,19 +124,19 @@ const Divider = styled(motion.div)`
   height: 3px;
   border-radius: 99px;
   background: linear-gradient(90deg, #c2622d, #e8855a);
-  margin: 12px auto 0;
+  margin: 8px auto 0;
 `;
 
 const SocialsRow = styled(motion.div)`
   display: flex;
-  gap: 14px;
-  margin: 30px 0 0;
+  gap: 12px;
+  margin: 10px 0 0;
 `;
 
 const Content = styled.div`
   width: 100%;
   max-width: 400px;
-  padding: 0px 20px 0;
+  padding: 12px 20px 0;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -156,13 +145,13 @@ const Content = styled.div`
 `;
 
 const SectionLabel = styled(motion.p)`
-  color: rgba(255,255,255,0.45);
+  color: rgba(0,0,0,0.5);
   font-size: 11px;
   font-weight: 700;
   letter-spacing: 2.5px;
   text-transform: uppercase;
   align-self: flex-start;
-  margin-bottom: 12px;
+  margin-bottom: 8px;
 `;
 
 const LinksWrap = styled.div`
@@ -176,10 +165,22 @@ export default function App() {
     <>
       <GlobalStyle />
       <Page>
-        {/* decorative blobs */}
-        <Blob style={{ width: 220, height: 220, top: -60, right: -60 }} />
-        <Blob style={{ width: 160, height: 160, bottom: 100, left: -40 }} />
-
+        <div style={{ position: 'fixed', inset: 0, zIndex: 0 }}>
+          <LightRays
+            raysOrigin="top-center"
+            raysColor="#000000"
+            raysSpeed={1}
+            lightSpread={0.5}
+            rayLength={3}
+            followMouse={true}
+            mouseInfluence={0.1}
+            noiseAmount={0}
+            distortion={0}
+            pulsating={false}
+            fadeDistance={1}
+            saturation={1}
+          />
+        </div>
         <ShareBtn
           onClick={() => setShowShare(true)}
           initial={{ opacity: 0, scale: 0 }}

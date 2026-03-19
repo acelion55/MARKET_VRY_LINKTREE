@@ -1,7 +1,7 @@
 import { FaInstagram, FaFacebook, FaYoutube, FaLinkedin, FaWhatsapp, FaFileAlt, FaUsers, FaGlobe, FaEnvelope } from 'react-icons/fa';
 
 export const profile = {
-  username: '@marketvry',
+  username: 'Marketvry',
   bio: 'FROM CLICKS TO CLIENTS',
   avatar: '/logo.jpeg',
 };
@@ -16,7 +16,7 @@ export const links = [
 export const socials = [
   { icon: FaInstagram, url: 'https://www.instagram.com/marketvry?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==',                                          color: '#E1306C' },
   { icon: FaFacebook,  url: 'https://www.facebook.com/people/Marketvry/61587304114705/',                     color: '#1877F2' },
+  { icon: FaWhatsapp,  url: 'https://wa.me/9001702542',                                                                color: '#25D366' },
   { icon: FaYoutube,   url: 'https://www.youtube.com/@marketvry',                                            color: '#FF0000' },
   { icon: FaLinkedin,  url: 'https://www.linkedin.com/company/marketvry',                                    color: '#0A66C2' },
-  { icon: FaWhatsapp,  url: 'https://wa.me/9001702542',                                                                color: '#25D366' },
 ];
