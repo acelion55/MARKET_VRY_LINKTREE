@@ -42,7 +42,7 @@ const Hero = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 70px 24px 10px;
+  padding: 55px 24px 10px;
   position: relative;
   z-index: 1;
 `;

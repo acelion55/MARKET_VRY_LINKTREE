@@ -139,14 +139,14 @@ const shareOptions = [
     bg: '#e1306c',
     color: '#fff',
     icon: FaInstagram,
-    action: () => window.open(`https://www.instagram.com/`),
+    action: () => window.open(`https://www.instagram.com/share?url=${url}`),
   },
   {
     label: 'LinkedIn',
     bg: '#0a66c2',
     color: '#fff',
     icon: FaLinkedin,
-    action: () => window.open(`https://www.linkedin.com/sharing/share-offsite/?url=${url}`),
+    action: () => window.open(`https://www.linkedin.com/sharing/share-offsite/?url=${url}&title=${encodeURIComponent('Market VRY')}&summary=${encodeURIComponent('FROM CLICKS TO CLIENTS')}`),
   },
   {
     label: 'Other',
