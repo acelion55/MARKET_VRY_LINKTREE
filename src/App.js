@@ -30,7 +30,7 @@ const Page = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 0;
+  padding: 0 0 20px;
   position: relative;
   overflow: hidden;
 `;
@@ -42,7 +42,7 @@ const Hero = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 32px 24px 10px;
+  padding: 70px 24px 10px;
   position: relative;
   z-index: 1;
 `;
@@ -66,8 +66,8 @@ const ShareBtn = styled(motion.button)`
 `;
 
 const AvatarRing = styled(motion.div)`
-  width: 80px;
-  height: 80px;
+  width: 100px;
+  height: 100px;
   border-radius: 50%;
   padding: 3px;
   background: linear-gradient(135deg, #c2622d, #e8855a);
@@ -126,7 +126,7 @@ const SocialsRow = styled(motion.div)`
 const Content = styled.div`
   width: 100%;
   max-width: 400px;
-  padding: 12px 20px 0;
+  padding: 10px 20px 0;
   display: flex;
   flex-direction: column;
   align-items: center;
