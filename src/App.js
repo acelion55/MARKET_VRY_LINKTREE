@@ -47,16 +47,6 @@ const Hero = styled.div`
   z-index: 1;
 `;
 
-/* Decorative orange circle blobs */
-const Blob = styled.div`
-  position: absolute;
-  border-radius: 50%;
-  background: #c2622d;
-  opacity: 0.12;
-  filter: blur(40px);
-  pointer-events: none;
-`;
-
 const ShareBtn = styled(motion.button)`
   position: fixed;
   top: 20px;
