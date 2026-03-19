@@ -141,7 +141,15 @@ const shareOptions = [
     bg: '#1877f2',
     color: '#fff',
     icon: FaFacebook,
-    action: () => window.open(`https://www.facebook.com/sharer/sharer.php?u=${url}`),
+    action: () => {
+      const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+      if (isMobile) {
+        window.location.href = `fb://share?href=${url}`;
+        setTimeout(() => window.open(`https://www.facebook.com/dialog/share?app_id=966242223397117&display=popup&href=${url}&redirect_uri=${url}`), 1500);
+      } else {
+        window.open(`https://www.facebook.com/dialog/share?app_id=966242223397117&display=popup&href=${url}&redirect_uri=${url}`);
+      }
+    },
   },
   {
     label: 'Instagram',
