@@ -148,14 +148,30 @@ const shareOptions = [
     bg: '#e1306c',
     color: '#fff',
     icon: FaInstagram,
-    action: () => window.open(`https://www.instagram.com/share?url=${url}`),
+    action: () => {
+      const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+      if (isMobile) {
+        window.location.href = `instagram://share?url=${url}`;
+        setTimeout(() => window.open(`https://www.instagram.com/`), 1500);
+      } else {
+        window.open(`https://www.instagram.com/`);
+      }
+    },
   },
   {
     label: 'LinkedIn',
     bg: '#0a66c2',
     color: '#fff',
     icon: FaLinkedin,
-    action: () => window.open(`https://www.linkedin.com/sharing/share-offsite/?url=${url}&title=${encodeURIComponent('Market VRY')}&summary=${encodeURIComponent('FROM CLICKS TO CLIENTS')}`),
+    action: () => {
+      const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+      if (isMobile) {
+        window.location.href = `linkedin://shareArticle?mini=true&url=${url}`;
+        setTimeout(() => window.open(`https://www.linkedin.com/sharing/share-offsite/?url=${url}`), 1500);
+      } else {
+        window.open(`https://www.linkedin.com/sharing/share-offsite/?url=${url}`);
+      }
+    },
   },
   {
     label: 'Other',
