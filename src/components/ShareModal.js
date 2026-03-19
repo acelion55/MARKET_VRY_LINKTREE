@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import { Link2, MoreHorizontal } from 'lucide-react';
 import { FaFacebook, FaWhatsapp, FaLinkedin, FaInstagram } from 'react-icons/fa';
 import { profile } from '../data/links';
+import LightRays from './LightRays';
 
 const Overlay = styled(motion.div)`
   position: fixed;
@@ -36,13 +37,15 @@ const Title = styled.h2`
 `;
 
 const Card = styled.div`
-  background: #6b0f2b;
   border-radius: 18px;
   padding: 32px 20px 24px;
   display: flex;
   flex-direction: column;
   align-items: center;
   margin-bottom: 28px;
+  position: relative;
+  overflow: hidden;
+  background: #ffffff;
 `;
 
 const AvatarCircle = styled.div`
@@ -52,7 +55,9 @@ const AvatarCircle = styled.div`
   background: #fff;
   overflow: hidden;
   margin-bottom: 16px;
-  border: 3px solid rgba(255,255,255,0.8);
+  border: 3px solid rgba(0,0,0,0.15);
+  position: relative;
+  z-index: 1;
 
   img {
     width: 100%;
@@ -63,15 +68,19 @@ const AvatarCircle = styled.div`
 `;
 
 const CardName = styled.p`
-  color: #fff;
+  color: #000;
   font-size: 18px;
   font-weight: 700;
   margin-bottom: 4px;
+  position: relative;
+  z-index: 1;
 `;
 
 const CardUrl = styled.p`
-  color: rgba(255,255,255,0.7);
+  color: rgba(0,0,0,0.6);
   font-size: 13px;
+  position: relative;
+  z-index: 1;
 `;
 
 const ShareRow = styled.div`
@@ -178,6 +187,22 @@ export default function ShareModal({ onClose }) {
           </Header>
 
           <Card>
+            <div style={{ position: 'absolute', inset: 0, zIndex: 0 }}>
+              <LightRays
+                raysOrigin="top-center"
+                raysColor="#000000"
+                raysSpeed={1}
+                lightSpread={0.5}
+                rayLength={3}
+                followMouse={true}
+                mouseInfluence={0.1}
+                noiseAmount={0}
+                distortion={0}
+                pulsating={false}
+                fadeDistance={1}
+                saturation={1}
+              />
+            </div>
             <AvatarCircle>
               <img src={profile.avatar} alt={profile.username} />
             </AvatarCircle>
